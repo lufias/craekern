@@ -1,0 +1,85 @@
+.navbar-default {
+	font-size: 0.9em;
+	background-color: #424242;
+	border-color: #333333;
+}
+.navbar-default .navbar-brand {
+	color: #efefef;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+	color: #ffd900;
+}
+.navbar-default .navbar-text {
+	color: #efefef;
+}
+.navbar-default .navbar-nav > li > a {
+	color: #efefef;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+	color: #ffd900;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+	color: #ffd900;
+	background-color: #333333;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+	color: #ffd900;
+	background-color: #333333;
+}
+.navbar-default .navbar-toggle {
+	border-color: #333333;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+	background-color: #333333;
+}
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: #efefef;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+	border-color: #efefef;
+}
+.navbar-default .navbar-link {
+	color: #efefef;
+}
+.navbar-default .navbar-link:hover {
+	color: #ffd900;
+}
+
+.navbar-highlight {
+	width: 100%;
+	height: 4px;
+	background-color: #FFD900; 
+}
+
+.navbar-brand img{
+	max-width: 30px; 
+	margin-top:-5px;
+}
+
+.navbar-brand .brand-title{
+	font-weight: bold;
+}
+
+@media (max-width: 767px) {
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+		color: #efefef;
+	}
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+		color: #ffd900;
+	}
+	.navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+	.navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+	.navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+		color: #ffd900;
+		background-color: #333333;
+	}
+}

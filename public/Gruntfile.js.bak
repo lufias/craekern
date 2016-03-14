@@ -1,0 +1,287 @@
+module.exports = function(grunt){
+
+	grunt.initConfig({
+
+		
+		clean: {
+			build:["temp", "dist", "templibs", "css/temp", "css/dist"],
+			temp:["temp"],
+			app:["dist/app*.js"],
+			templibs:["templibs"],
+			tempcss:["css/temp"],
+			cssdist:["css/dist"],
+			cssfont: ["css/fonts"]
+		},
+
+		watch:{
+			app:{
+				files:"app/**/*.*",
+				tasks:["compileApp"],
+				options:{
+					livereload:true
+				}
+			},
+			style: {
+				files:"css/src/**/*.*",
+				tasks:["compileStyle"],
+				options:{
+					livereload:true
+				}
+			}
+		},
+
+		browserify:{
+			options: {
+				browserifyOptions: {
+					debug: true
+				}
+			},			
+			main:{
+				files:{
+					"temp/main.js": ["app/main.js"]
+				}				
+			},
+			home:{
+				files:{
+					"temp/home.js":["app/home/index.js"]
+				}
+			},
+			myebuku:{
+				files:{
+					"temp/myebuku.js":["app/myebuku/index.js"]
+				}
+			},
+			myhealth:{
+				files:{
+					"temp/myhealth.js":["app/myhealth/index.js"]
+				}
+			},
+			mykomuniti:{
+				files:{
+					"temp/mykomuniti.js":["app/mykomuniti/index.js"]
+				}
+			},
+			myposter:{
+				files:{
+					"temp/myposter.js":["app/myposter/index.js"]
+				}
+			},
+			myshop:{
+				files:{
+					"temp/myshop.js":["app/myshop/index.js"]
+				}
+			},
+			mylearning:{
+				files:{
+					"temp/mylearning.js":["app/mylearning/mylearning.js"]
+				}
+			},
+			myskool:{
+				files:{
+					"temp/myskool.js":["app/myskool/index.js"]
+				}	
+			},
+			mysoal:{
+				files:{
+					"temp/mysoal.js":["app/mysoal/index.js"]
+
+				}
+			},
+			myebook:{				
+				files:{
+					"temp/myebook.js":["app/myebook/index.js"]
+				}
+			}
+		}, // end of browserify
+		
+		ngAnnotate:{
+			temp:{
+				expand: true,
+				src:["temp/*.js"],
+				rename: function (dest, src) { 
+
+					var filename = src.substr(0,src.lastIndexOf(".")) || src + "";
+					return filename + "-annotated.js";
+				
+				}
+			}
+		},
+
+		concat:{
+			options: {
+		      separator: ';'		     
+		    },
+			dist: {						
+				src:[		      		     
+				  	
+				  	'temp/main-annotated.js',
+				  	'temp/home-annotated.js',
+					'temp/mykomuniti-annotated.js',
+					'temp/myebuku-annotated.js',
+					'temp/myhealth-annotated.js',
+					'temp/myposter-annotated.js',
+					'temp/myskool-annotated.js',
+					'temp/myshop-annotated.js',
+					'temp/mysoal-annotated.js',
+					'temp/myebook-annotated.js'
+				],
+				dest: 'dist/app.js',
+		    },
+		    libs:{		    	
+		    	src:[
+		    		'templibs/jquery.min.js',
+		    		'templibs/angular.min.js',		    		
+		    		'templibs/bootstrap.min.js',
+		    		'templibs/oclazyload.min.js',
+		    		'templibs/bars.min.js',
+		    		'templibs/moment.min.js',
+		    		'templibs/angular-google-analytics.min.js',
+		    		'templibs/angular-ui-router.min.js',
+		    		'templibs/angular-animate.min.js',
+		    		'templibs/lodash.min.js',
+		    		'templibs/angular-underscore-module.min.js',
+		    		'templibs/ui-bootstrap-tpls.min.js',
+		    		'templibs/ng-biscuit.min.js',
+		    		'templibs/ng-infinite-scroll.min.js'		    		
+
+		    	],
+		    	dest: 'dist/libs.js'
+		    },
+		    css:{
+		    	options:{
+		    		sourceMap: true
+		    	},
+		    	src:[
+		    		'css/temp/lib.css',
+		    		'css/temp/style.css'		    		
+		    	],
+		    	dest: 'css/dist/style.css'
+		    }
+		},
+
+		uglify: {
+			dist: {				
+				files: {
+					'dist/app.min.js': ['dist/app.js']
+				}
+			},
+			libs:{
+				files:{
+					'templibs/jquery.min.js':['bower_components/jquery/dist/jquery.min.js'],
+					'templibs/angular.min.js':['bower_components/angular/angular.min.js'],					
+					'templibs/bootstrap.min.js':['bower_components/bootstrap/dist/js/bootstrap.min.js'],
+					'templibs/oclazyload.min.js':['bower_components/oclazyload/dist/ocLazyLoad.min.js'],
+					'templibs/bars.min.js':['js/bars.js'],
+					'templibs/moment.min.js':['bower_components/moment/min/moment.min.js'],
+					'templibs/angular-google-analytics.min.js':['bower_components/angular-google-analytics/dist/angular-google-analytics.min.js'],
+					'templibs/angular-ui-router.min.js':['bower_components/angular-ui-router/release/angular-ui-router.min.js'],
+					'templibs/angular-animate.min.js':['bower_components/angular-animate/angular-animate.js'],
+					'templibs/lodash.min.js':['bower_components/lodash/lodash.min.js'],
+					'templibs/angular-underscore-module.min.js':['app/angular-underscore-module.js'],
+					'templibs/ui-bootstrap-tpls.min.js':['js/ui-bootstrap-tpls-0.11.0.min.js'],
+					'templibs/ng-biscuit.min.js':['bower_components/ngWig/dist/ng-biscuit.min.js'],
+					'templibs/ng-infinite-scroll.min.js':['bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js']					
+				}
+			},			
+		},
+
+		less:{
+			app:{
+				files:{
+					'css/src/less/build/style.css':'css/src/less/style.less'
+				}
+			}
+		},
+
+		cssmin: {
+			options: {
+				shorthandCompacting: false,
+				roundingPrecision: -1
+			},
+			lib: {
+				files: {
+					'css/temp/lib.css': [
+					'bower_components/bootstrap/dist/css/bootstrap.min.css', 
+					'bower_components/font-awesome/css/font-awesome.min.css',
+					'css/src/w3.css'					
+					]
+				}
+			},
+			app: {
+				files: {
+					'css/temp/style.css': ['css/src/style.css', 'css/src/less/build/style.css', 'css/src/myebook.css']
+				}
+			}
+		},
+
+		copy: {
+			font:{
+				files:[
+					{
+					expand: true, 
+					src: ['./*'], 
+					dest: 'css/fonts', 
+					filter: 'isFile',
+					cwd: 'bower_components/font-awesome/fonts',
+					}
+				]
+			}
+		}
+		
+
+	});
+
+	grunt.loadNpmTasks("grunt-contrib-clean");
+	grunt.loadNpmTasks("grunt-browserify");	
+	grunt.loadNpmTasks("grunt-ng-annotate");
+	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-uglify');	
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');	
+	grunt.loadNpmTasks('grunt-contrib-less');	
+	
+
+	grunt.registerTask('build', [
+		"clean:build", 
+		"browserify", 
+		"ngAnnotate", 
+		"concat:dist", 
+		"uglify:dist", 
+		"uglify:libs", 
+		"concat:libs",
+		"copy:font",
+		"less:app",
+		"cssmin:lib",
+		"cssmin:app",
+		"concat:css", 		
+		"clean:templibs",
+		"clean:tempcss"
+	]);	
+
+	grunt.registerTask("compileApp",[
+		"clean:temp",
+		"clean:app",
+		"browserify", 
+		"ngAnnotate", 
+		"concat:dist", 
+		"uglify:dist",
+				
+	]);
+
+	grunt.registerTask("compileStyle", [
+		"clean:tempcss",
+		"clean:cssdist",
+		"less:app",
+		"cssmin:lib",
+		"cssmin:app",
+		"concat:css", 
+		"clean:tempcss"
+	]);
+
+
+
+
+};
+
+

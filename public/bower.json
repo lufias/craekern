@@ -1,0 +1,26 @@
+{
+  "name": "craekern",
+  "authors": [
+    "Saiful Azhar <saiful.azhar@ingeniworks.com.my>"
+  ],
+  "description": "Craekern social network",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "http://craekern.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "font-awesome": "fontawesome#^4.5.0",
+    "jquery": "^2.2.1",
+    "moment": "^2.11.2",
+    "lodash": "^4.6.1"
+  }
+}
